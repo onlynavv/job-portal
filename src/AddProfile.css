@@ -1,0 +1,30 @@
+.addProfile-section {
+  top: 140px;
+  position: relative;
+}
+
+.addProfile-wrapper {
+  margin-top: 15px;
+}
+
+.addProfile-form > * {
+  margin-bottom: 15px;
+}
+
+.upload-resume {
+  background: transparent;
+  padding: 15px 35px;
+  border: solid 2px #233c9b;
+  outline: none;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #233c9b;
+  width: 100%;
+}
+
+.upload-resume:hover {
+  cursor: pointer;
+  background-color: #233c9b;
+  color: white;
+  font-weight: 600;
+}

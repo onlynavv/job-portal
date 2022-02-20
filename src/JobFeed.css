@@ -1,0 +1,71 @@
+.jobfeed-section {
+  top: 140px;
+  position: relative;
+}
+
+.jobCard-wrapper {
+  display: flex;
+  margin-bottom: 25px;
+  padding: 25px;
+  width: 540px;
+  gap: 90px;
+  align-items: baseline;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 2px 3px 3px 2px #e7e7e7;
+}
+
+.jobfeed-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.jobCard-left > *,
+.jobCard-right > * {
+  margin-bottom: 10px;
+}
+
+.jobCard-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.applyBtn,
+.applyFullBtn {
+  background: transparent;
+  padding: 15px 35px;
+  border: solid 2px #233c9b;
+  outline: none;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #233c9b;
+  width: 100%;
+}
+
+.jobApplied {
+  background-color: #233c9b;
+  padding: 15px 35px;
+  border: solid 2px #233c9b;
+  outline: none;
+  border-radius: 30px;
+  font-weight: 600;
+  color: white;
+  width: 100%;
+}
+
+.applyFullBtn {
+  border: solid 2px #aaaaaa;
+  color: #aaaaaa;
+}
+
+.applyBtn:hover {
+  cursor: pointer;
+  background-color: #233c9b;
+  color: white;
+  font-weight: 600;
+}
