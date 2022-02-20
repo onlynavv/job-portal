@@ -1,0 +1,40 @@
+.view-application-section {
+  top: 140px;
+  position: relative;
+}
+
+.view-application-wrapper {
+  margin-top: 15px;
+  background: white;
+  padding: 35px 55px;
+  border-radius: 3px;
+  box-shadow: 0px -1px 2px 2px #dbdbdb;
+}
+
+.view-application-wrapper > * {
+  margin-bottom: 25px;
+}
+
+.view-resume {
+  background-color: #233c9b;
+  padding: 15px 35px;
+  border: solid 2px #233c9b;
+  outline: none;
+  border-radius: 30px;
+  font-weight: 600;
+  color: white;
+}
+
+.view-resume:hover {
+  cursor: pointer;
+}
+
+.viewAppl-userBio {
+  display: flex;
+  justify-content: space-between;
+}
+
+.viewAppl-header {
+  display: flex;
+  justify-content: space-between;
+}

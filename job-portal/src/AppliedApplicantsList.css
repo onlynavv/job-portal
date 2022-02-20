@@ -1,0 +1,16 @@
+.appliedApplicants-section {
+  top: 140px;
+  position: relative;
+}
+
+.appliedApplicant-wrapper {
+  background: white;
+  padding: 25px 35px;
+  border-radius: 10px;
+  box-shadow: 1px 4px 3px 3px #d3d1d1;
+  margin-top: 15px;
+}
+
+.appliedApplicant-wrapper > * {
+  margin-bottom: 15px;
+}

@@ -1,0 +1,37 @@
+.view-profile {
+  background-color: #233c9b;
+  padding: 15px 35px;
+  border: solid 2px #233c9b;
+  outline: none;
+  border-radius: 30px;
+  font-weight: 600;
+  color: white;
+}
+
+.view-profile:hover {
+  cursor: pointer;
+}
+
+.change-Appstatus > .userInput {
+  font-weight: 800;
+}
+
+.appliedApplicant-wrapper {
+  display: flex;
+}
+
+.appliedApplicant-wrapper > div {
+  flex: 0.5;
+}
+
+.appliedApplicant-wrapper > div > * {
+  margin-bottom: 15px;
+}
+
+.appliedApplicant-wrapper > div > p > b {
+  font-weight: 700;
+}
+
+.change-Appstatus > .userInput {
+  width: 100%;
+}

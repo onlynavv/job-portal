@@ -1,0 +1,58 @@
+.singleJob-section {
+  top: 140px;
+  position: relative;
+}
+
+.singleJobInfo-list {
+  list-style: disc;
+  list-style-position: inside;
+}
+
+.singleJob-wrapper {
+  background: white;
+  padding: 35px 45px;
+  border-radius: 5px;
+  box-shadow: -1px -1px 7px 3px #dfdfdf;
+}
+
+.singleJob-wrapper > * {
+  margin-bottom: 45px;
+}
+
+.singleJob-bottomInfo > * {
+  margin-bottom: 20px;
+}
+
+.singleJob-headInfo > div > * {
+  margin-bottom: 10px;
+}
+
+.singleJob-headInfo,
+.job-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-header {
+  margin-bottom: 25px;
+}
+
+.back-btn {
+  background: transparent;
+  padding: 10px 25px;
+  border: solid 2px #233c9b;
+  outline: none;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #233c9b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.back-btn:hover {
+  cursor: pointer;
+  background-color: #233c9b;
+  color: white;
+  font-weight: 600;
+}
