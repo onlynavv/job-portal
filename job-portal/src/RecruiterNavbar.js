@@ -24,7 +24,7 @@ const RecruiterNavbar = () => {
   return (
       <nav className='navbar'>
         <div className='recruiter-navbar nav-center'>
-            <h3 onClick={()=>{history.push('/')}} className='logo'>Recruiter Dashboard</h3>
+            <h3 onClick={()=>{history.push('/')}} className='logo'>Admin Dashboard</h3>
             <div className='recruiter-navbar-container'>
                 <Link to="/">Dashboard</Link>
                 <Link to="/addJobListing">Add Job Listing</Link>

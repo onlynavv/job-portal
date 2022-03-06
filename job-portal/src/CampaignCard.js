@@ -21,7 +21,7 @@ const CampaignCard = ({_id, deadline, jobStatus, jobtitle, jobtype, applicants, 
         setJobStatusValue(e.target.value)
 
         try{
-            const resp = await fetch('http://localhost:9000/job/joblisting/setToCompleteCampaign', {
+            const resp = await fetch('https://job-portal-node-app.herokuapp.com/job/joblisting/setToCompleteCampaign', {
             method:'PUT',
             headers: { "Content-Type": "application/json", "x-auth-token":userState.user.token},
             body: JSON.stringify({jobStatusValue:e.target.value, jobId:_id})
@@ -75,8 +75,7 @@ const CampaignCard = ({_id, deadline, jobStatus, jobtitle, jobtype, applicants, 
                         </MenuItem>   
                 </Select>
             </div>
-            {applicants.length > 0 && <button className='viewApplicants-btn' onClick={()=>history.push(`/ongoingCampaign/${_id}`)}>View Applicants</button>}
-            
+            <button className='viewApplicants-btn' onClick={()=>history.push(`/ongoingCampaign/${_id}`)}>View Applicants</button>
         </div>
     </div>
   )

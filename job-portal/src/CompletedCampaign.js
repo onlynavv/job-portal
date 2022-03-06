@@ -8,7 +8,7 @@ const CompletedCampaign = () => {
   const [completedCampaign, setCompletedCampaign] = useState([])
 
   useEffect(()=>{
-    fetch(`http://localhost:9000/job/joblisting/getCompletedCampaigns/${userState.user.email}`,{
+    fetch(`https://job-portal-node-app.herokuapp.com/job/joblisting/getCompletedCampaigns/${userState.user.email}`,{
             method:'GET',
             headers: { "Content-Type": "application/json", "x-auth-token":userState.user.token}}
             )

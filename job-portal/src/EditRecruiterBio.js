@@ -23,7 +23,7 @@ const EditRecruiterBio = () => {
     const handleEditBio = async(e) => {
         e.preventDefault()
         try{
-            const resp = await fetch('http://localhost:9000/job/user/editRecruiterBio', {
+            const resp = await fetch('https://job-portal-node-app.herokuapp.com/job/user/editRecruiterBio', {
             method:'PUT',
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify({recruiterBio:recruiterBio, recruiterId:userState.user._id})

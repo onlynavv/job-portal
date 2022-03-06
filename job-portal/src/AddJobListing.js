@@ -16,7 +16,6 @@ import Chip from '@mui/material/Chip';
 import { useGlobalContext } from './context';
 import { useHistory } from 'react-router-dom';
 import "./AddJobListing.css"
-import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 const validateFormSchema = yup.object({
     jobtitle: yup.string().required('Please fill the Job Title'),
@@ -24,8 +23,7 @@ const validateFormSchema = yup.object({
     salary: yup.string().required('Please fill the Salary'),
     jobtype: yup.string().required("Please fill the Job Type"),
     applicants: yup.string().required("Please fill the No of Applicants to apply"),
-    positions: yup.string().required("Please fill the no of positions called for"),
-    jobdesc: yup.string().required("Please fill job description")
+    positions: yup.string().required("Please fill the no of positions called for")
 })
 
 const AddJobListing = () => {
@@ -44,12 +42,8 @@ const AddJobListing = () => {
     const [skillsetValues, setSkillsetValues] = useState([]);
     const [skillsInitial, setSkillsInitial] = useState([])
 
-    const [requirementList,setRequirementList] = useState([{requirement:""}])
-    const [benefitList,setBenefitList] = useState([{benefit:""}])
-    const [responsibilityList,setResponsibilityList] = useState([{responsibility:""}])
-
     useEffect(()=>{
-    fetch("http://localhost:9000/job/skillset/getSkills")
+    fetch("https://job-portal-node-app.herokuapp.com/job/skillset/getSkills")
     .then((data)=> data.json())
     .then((item)=> setSkillsInitial(item))
   },[])
@@ -64,77 +58,9 @@ const AddJobListing = () => {
     )
   }
 
-//   -------------------------------------------------------------
-
-  // requirement field
-  const handleRequirementChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...requirementList];
-    list[index][name] = value;
-    setRequirementList(list);
-  };
-
-  // handle click event of the Remove button
-  const handleRequirementRemove = index => {
-    const list = [...requirementList];
-    list.splice(index, 1);
-    setRequirementList(list);
-  };
-
-  // handle click event of the Add button
-  const handleRequirementAdd = () => {
-    setRequirementList([...requirementList, { requirement: ""}]);
-  };
-
-//   ----------------------------------------------------------------------
-
-  // benefits field
-  const handleBenefitChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...benefitList];
-    list[index][name] = value;
-    setBenefitList(list);
-  };
-
-  // handle click event of the Remove button
-  const handleBenefitRemove = index => {
-    const list = [...benefitList];
-    list.splice(index, 1);
-    setBenefitList(list);
-  };
-
-  // handle click event of the Add button
-  const handleBenefitAdd = () => {
-    setBenefitList([...benefitList, { benefit: ""}]);
-  };
-
-  //   ----------------------------------------------------------------------
-
-  // responsibility field
-  const handleResponsibilityChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...responsibilityList];
-    list[index][name] = value;
-    setResponsibilityList(list);
-  };
-
-  // handle click event of the Remove button
-  const handleResponsibilityRemove = index => {
-    const list = [...responsibilityList];
-    list.splice(index, 1);
-    setResponsibilityList(list);
-  };
-
-  // handle click event of the Add button
-  const handleResponsibilityAdd = () => {
-    setResponsibilityList([...responsibilityList, {responsibility:""}]);
-  };
-
-//   -----------------------------------------------------------------------
-
      const {handleBlur, handleChange, handleSubmit, errors, values, touched} = useFormik(
         {
-            initialValues:{jobtitle:"", workexperience:"", salary:"", jobtype:"none", applicants:"", positions:"",jobdesc:""},
+            initialValues:{jobtitle:"", workexperience:"", salary:"", jobtype:"none", applicants:"", positions:""},
             validationSchema: validateFormSchema,
             onSubmit: (values) => {
                 createJob(values)
@@ -143,17 +69,17 @@ const AddJobListing = () => {
     )
 
     const createJob = async(values) => {
-    console.log({...values, requirementList:requirementList, benefitList:benefitList, responsibilityList:responsibilityList})
-    // fetch('http://localhost:9000/job/joblisting/addJobListing', {
+    // console.log({...values, deadline: moment(dateValue).unix(), personList:skillsetValues})
+    // fetch('https://job-portal-node-app.herokuapp.com/job/joblisting/addJobListing', {
     //     method:'POST',
     //     headers: { "Content-Type": "application/json"},
     //     body: JSON.stringify({...values, deadline: moment(dateValue).unix(), personList:skillsetValues})
     // })
     try{
-            const resp = await fetch('http://localhost:9000/job/joblisting/addJobListing', {
+            const resp = await fetch('https://job-portal-node-app.herokuapp.com/job/joblisting/addJobListing', {
             method:'POST',
             headers: { "Content-Type": "application/json"},
-            body: JSON.stringify({...values, deadline: moment(dateValue).unix(), skillsets:skillsetValues,recruiterName: userState.user.username, recruiterEmail: userState.user.email, recruiterLocation: userState.user.location, requirementList:requirementList, benefitList:benefitList, responsibilityList:responsibilityList})
+            body: JSON.stringify({...values, deadline: moment(dateValue).unix(), skillsets:skillsetValues,recruiterName: userState.user.username, recruiterEmail: userState.user.email, recruiterLocation: userState.user.location})
                 })
             if(resp.ok){
                 
@@ -205,74 +131,6 @@ const AddJobListing = () => {
                             </MenuItem>
                         </Select>
                     </div>
-                    <div className='form-control' style={{display:"flex",flexDirection:"column"}}>
-                        <InputLabel id="demo-simple-select-standard-label" className="userInput">Job Description</InputLabel>
-                         <TextareaAutosize
-                            aria-label="empty textarea"
-                            placeholder="Enter Job Description"
-                            className="userInput"
-                            minRows={5}
-                            id="jobdesc" name="jobdesc" value={values.jobdesc} error={errors.jobdesc && touched.jobdesc} helperText={errors.jobdesc && touched.jobdesc && errors.jobdesc} onChange={handleChange} onBlur={handleBlur}
-                            />
-                            <p style={{color:"#d32f2f"}}>{errors.jobdesc && touched.jobdesc && errors.jobdesc}</p>
-                    </div>
-                    <div className='form-control'>
-                        <InputLabel id="demo-simple-select-standard-label" className="userInput">Add Requirements</InputLabel>
-                        {requirementList.map((item,index)=>{
-                            return(
-                                <div className='requirement-div' key={index}>
-                                    <TextField className="userInput" label='Enter a Requirement' placeholder='ex: Problem Solving and Interpersonal Skills.' id="requirement" name="requirement" value={item.requirement} onChange={e => handleRequirementChange(e, index)} multiline variant="standard" />
-                                    
-                                    <div className="btn-box">
-                                        {requirementList.length !== 1 && (
-                                        <button onClick={() => handleRequirementRemove(index)}>Remove</button> 
-                                        )}
-                                        {requirementList.length - 1 === index && <button onClick={handleRequirementAdd}>Add</button>}
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                    <div className='form-control'>
-                        <InputLabel id="demo-simple-select-standard-label" className="userInput">Add Benefits</InputLabel>
-                        {benefitList.map((item,index)=>{
-                            return(
-                                <div className='benefit-div' key={index}>
-                                    <TextField className="userInput" label='Enter a Benefit' placeholder='ex: Health insurance' id="benefit" name="benefit" value={item.benefit} onChange={e => handleBenefitChange(e, index)} multiline variant="standard" />
-                                    
-                                    <div className="btn-box">
-                                        {benefitList.length !== 1 && (
-                                        <button onClick={() => handleBenefitRemove(index)}>Remove</button> 
-                                        )}
-                                        {benefitList.length - 1 === index && <button onClick={handleBenefitAdd}>Add</button>}
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                    <div className='form-control'>
-                        <InputLabel id="demo-simple-select-standard-label" className="userInput">Responsibilties</InputLabel>
-                        {responsibilityList.map((item,index)=>{
-                            return(
-                                <div className='responsibility-div' key={index}>
-                                    <TextareaAutosize
-                                        aria-label="empty textarea"
-                                        placeholder="Enter a Responsibility"
-                                        className="userInput"
-                                        minRows={5}
-                                        id="responsibility" name="responsibility" value={item.responsibility} onChange={e => handleResponsibilityChange(e, index)}
-                                        />
-                                    
-                                    <div className="btn-box">
-                                        {responsibilityList.length !== 1 && (
-                                        <button onClick={() => handleResponsibilityRemove(index)}>Remove</button> 
-                                        )}
-                                        {responsibilityList.length - 1 === index && <button onClick={handleResponsibilityAdd}>Add</button>}
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
                     <div className='form-control'>
                         <TextField className="userInput" label='Max no of Applicants' placeholder='no of Applicants ex: 30' id="applicants" name="applicants" value={values.applicants} error={errors.applicants && touched.applicants} helperText={errors.applicants && touched.applicants && errors.applicants} onChange={handleChange} onBlur={handleBlur}  multiline variant="standard" />
                     </div>
@@ -281,7 +139,7 @@ const AddJobListing = () => {
                     </div>
                     <div className='form-control'>
                         <InputLabel id="demo-simple-select-standard-label" className="userInput">Deadline for Application</InputLabel>
-                        <Calendar value={dateValue} minDate={new Date()} name="date" onChange={handleDateChange}/>
+                        <Calendar value={dateValue} name="date" onChange={handleDateChange}/>
                         <label>Date: {moment(dateValue).format('dddd, MMMM Do YYYY, h:mm:ss a')}</label>
                     </div>
                     

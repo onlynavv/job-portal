@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddProfile from './AddProfile';
 import JobFeed from './JobFeed';
 import MyApplications from './MyApplications';
-import SingleJob from './SingleJob';
 import UserNavbar from './UserNavbar';
 import UserProfile from './UserProfile';
 
@@ -15,9 +14,6 @@ const User = () => {
           <Switch>
               <Route exact path="/">
                 <JobFeed />
-              </Route>
-              <Route path="/singleJob/:id"> 
-                <SingleJob />
               </Route>
               <Route path="/profile">
                 <UserProfile />

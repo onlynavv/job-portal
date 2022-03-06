@@ -33,7 +33,7 @@ const Register = ({showRegisterForm,setShowRegisterForm}) => {
     const registerUser = async(values) => {
 
         try{
-            const resp = await fetch('http://localhost:9000/job/user/signup', {
+            const resp = await fetch('https://job-portal-node-app.herokuapp.com/job/user/signup', {
             method:'POST',
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify(values)

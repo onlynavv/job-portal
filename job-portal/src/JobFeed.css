@@ -44,6 +44,7 @@
   border-radius: 30px;
   font-weight: 600;
   color: #233c9b;
+  width: 100%;
 }
 
 .jobApplied {
@@ -54,6 +55,7 @@
   border-radius: 30px;
   font-weight: 600;
   color: white;
+  width: 100%;
 }
 
 .applyFullBtn {
@@ -66,51 +68,4 @@
   background-color: #233c9b;
   color: white;
   font-weight: 600;
-}
-
-.jobInfo-list {
-  list-style: circle;
-  list-style-position: inside;
-}
-
-.job-salary {
-  background: #efefef;
-  border-radius: 5px;
-  color: black;
-  padding: 4px 10px;
-}
-.view-more {
-  color: #233c9b;
-}
-
-.view-more:hover {
-  cursor: pointer;
-}
-
-.jobfeed-search {
-  padding: 10px 15px;
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 5px;
-  height: 45px;
-  box-shadow: 1px 2px 3px 2px #e3e3e3;
-  width: 580px;
-  max-width: 600px;
-}
-
-.jobfeed-search > input {
-  outline: none;
-  border: none;
-  background: none;
-  width: 100%;
-  font-size: 14px;
-}
-
-.jobfeed-filterHeader {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 50px;
-  justify-content: center;
-  margin-top: 50px;
 }

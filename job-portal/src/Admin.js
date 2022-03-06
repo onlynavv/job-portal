@@ -7,7 +7,6 @@ import EditRecruiterBio from './EditRecruiterBio';
 import OngoingCampaign from './OngoingCampaign';
 import RecruiterDashboard from './RecruiterDashboard';
 import RecruiterNavbar from './RecruiterNavbar';
-import ViewApplicants from './ViewApplicants';
 
 const Admin = () => {
   return (
@@ -32,9 +31,6 @@ const Admin = () => {
               </Route>
               <Route path="/completedCampaign">
                   <CompletedCampaign />
-              </Route>
-              <Route path="/applicants/:id">
-                  <ViewApplicants />
               </Route>
           </Switch>
       </Router>

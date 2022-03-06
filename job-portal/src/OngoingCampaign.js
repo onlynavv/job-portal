@@ -20,7 +20,7 @@ const OngoingCampaign = () => {
     const [ongoingCampaign, setOngoingCampaign] = useState([])
 
     const getOngoingCampaignList = () =>{
-        fetch(`http://localhost:9000/job/joblisting/getOngoingCampaigns/${userState.user.email}`,{
+        fetch(`https://job-portal-node-app.herokuapp.com/job/joblisting/getOngoingCampaigns/${userState.user.email}`,{
             method:'GET',
             headers: { "Content-Type": "application/json", "x-auth-token":userState.user.token}}
             )
@@ -38,6 +38,7 @@ const OngoingCampaign = () => {
     <section className='ongoingCampaign-section'>
         <div className='container'>
             <h1>OngoingCampaigns</h1>
+            <h3>Applied Candidates</h3>
             {ongoingCampaign.length> 0 && ongoingCampaign.map((item)=>{
                 return(
                     <CampaignCard key={item._id} {...item} getOngoingCampaignList={getOngoingCampaignList} />

@@ -10,6 +10,12 @@ const Login = () => {
 
     const history = useHistory()
 
+    useEffect(()=>{
+      if(!userState.isUserAuthenticated){
+        isUserLoggedIn()
+      }
+  },[])
+
     const [singleUser,setSingleUser] = useState({email:'',password:''})
     const [showRegisterForm,setShowRegisterForm] = useState(false)
 
@@ -25,7 +31,7 @@ const Login = () => {
 
     const handleLogin = async() => {
         try{
-            const resp = await fetch('http://localhost:9000/job/user/login', {
+            const resp = await fetch('https://job-portal-node-app.herokuapp.com/job/user/login', {
             method:'POST',
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify(singleUser)

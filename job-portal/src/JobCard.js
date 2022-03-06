@@ -1,9 +1,8 @@
 import React,{useState, useEffect} from 'react'
 import { useGlobalContext } from './context'
 import {nanoid} from "nanoid"
-import { useHistory } from 'react-router-dom'
 
-const JobCard = ({_id, applicants, deadline, jobtitle, jobtype, noofapplicants, positions, postedOn, recruiterEmail, recruiterLocation, recruiterName, salary, skillsets, workexperience, requirementList, jobdesc}) => {
+const JobCard = ({_id, applicants, deadline, jobtitle, jobtype, noofapplicants, positions, postedOn, recruiterEmail, recruiterLocation, recruiterName, salary, skillsets, workexperience}) => {
 
     const jobLastDate = new Date(deadline)
     const jobPostedDate = new Date(postedOn)
@@ -11,24 +10,20 @@ const JobCard = ({_id, applicants, deadline, jobtitle, jobtype, noofapplicants, 
     const {userState, isUserLoggedIn, userDispatch, getJobListing} = useGlobalContext()
     const {user} = userState
 
-    const history = useHistory()
-    
     useEffect(()=>{
       if(!userState.isUserAuthenticated){
         isUserLoggedIn()
       }
   },[])
 
-  console.log(user)
-
     const handleJobApply = async() => {
         console.log({applicationId:nanoid(6), userId: user._id, jobId: _id, jobTitle: jobtitle, resume: user.info.resume, recruiterLocation, recruiterName, salary, skillsets, workexperience})
 
         try{
-            const resp = await fetch('http://localhost:9000/job/joblisting/apply', {
+            const resp = await fetch('https://job-portal-node-app.herokuapp.com/job/joblisting/apply', {
             method:'PUT',
             headers: { "Content-Type": "application/json", "x-auth-token":user.token},
-            body: JSON.stringify({applicationId:nanoid(6), userId: user._id,applicantName:user.username,applicantEmail:user.email, jobId: _id, jobTitle: jobtitle, resume: user.info.resume, recruiterLocation, recruiterName, salary, skillsets, workexperience, jobdesc})
+            body: JSON.stringify({applicationId:nanoid(6), userId: user._id,applicantName:user.username,applicantEmail:user.email, jobId: _id, jobTitle: jobtitle, resume: user.info.resume, recruiterLocation, recruiterName, salary, skillsets, workexperience})
                 })
             if(resp.ok){
                 console.log("job applied")
@@ -48,7 +43,7 @@ const JobCard = ({_id, applicants, deadline, jobtitle, jobtype, noofapplicants, 
     })
 
     console.log(user.appliedJobs)
-    const isUserGotRejected = user.appliedJobs && user.appliedJobs.find((item)=>{
+    const isUserGotRejected = user?.appliedJobs.find((item)=>{
         if(item.jobId === _id){
             if(item.applicationStatus === "rejected"){
                 return item
@@ -58,26 +53,30 @@ const JobCard = ({_id, applicants, deadline, jobtitle, jobtype, noofapplicants, 
 
     console.log(isUserGotRejected)
 
-    const descTruncate = (string, n) => {
-        return string?.length > n ? string.substr(0,n-1) + '...' : string
-    }
-
   return (
     <div className='jobCard-wrapper'>
         <div className='jobCard-left'>
-            <div className='jobRecruiter-info'>
-                <h3>{jobtitle}</h3>
-                <p>{recruiterName} . {recruiterEmail}</p>
-                <p>{recruiterLocation}</p>
+            <h3>{jobtitle}</h3>
+            <p><b>Posted on:</b> {jobPostedDate.toLocaleDateString()}</p>
+            <p><b>Company Name:</b> {recruiterName}</p>
+            <p><b>by:</b> {recruiterEmail}</p>
+            <p><b>location: </b>{recruiterLocation}</p>
+            <p><b>No of positions opened:</b> {positions}</p>
+            <p><b>Salary:</b> {salary} / month</p>
+            <p><b>Work Experience:</b> {workexperience}</p>
+            <p><b>Job Type:</b> {jobtype}</p>
+            <p><b>last day to apply:</b> {jobLastDate.toLocaleDateString()}</p>
+        </div>
+
+        <div className="jobCard-right">
+            <div className='skillsets-div'>
+                <p><b>Skillsets:</b></p>
+                <ul>
+                    {skillsets.map((item, index)=>{
+                        return <li key={index}>{item}</li>
+                    })}
+                </ul>
             </div>
-            <p><b className='job-salary'>₹ {salary} / month</b></p>
-            <ul className='jobInfo-list'>
-                <li>{jobtype}</li>
-                <li>work experience of {workexperience}</li>
-            </ul>
-            <ul className='jobInfo-list'>
-                {descTruncate(jobdesc, 100)} <span className='view-more' onClick={()=>{history.push(`/singleJob/${_id}`)}}>view more..</span>
-            </ul>
             <div className='applyBtn-div'>
                 {((applicants.length === noofapplicants || isUserGotRejected) && <button className='applyFullBtn' disabled>Full</button> )|| 
                     (isUserApplied && <button className='jobApplied' disabled>Applied</button> )|| <button className='applyBtn' onClick={handleJobApply}>Apply</button>

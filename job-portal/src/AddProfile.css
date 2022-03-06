@@ -5,29 +5,10 @@
 
 .addProfile-wrapper {
   margin-top: 15px;
-  display: flex;
-  gap: 25px;
-}
-
-.addProfile-left {
-  flex: 0.7;
-  background: white;
-  padding: 35px;
-  border-radius: 10px;
-  box-shadow: 2px 3px 4px 2px #c3c2c2;
-}
-
-.addProfile-right {
-  flex: 0.3;
-  padding: 35px;
 }
 
 .addProfile-form > * {
   margin-bottom: 15px;
-}
-
-.userinput {
-  width: 100%;
 }
 
 .upload-resume {
@@ -46,62 +27,4 @@
   background-color: #233c9b;
   color: white;
   font-weight: 600;
-}
-
-.workExperience-div,
-.education-div,
-.skills-div,
-.projects-div {
-  display: flex;
-  flex-direction: column;
-}
-
-.userinput > * {
-  margin-bottom: 15px;
-}
-
-.select-education {
-  width: 50%;
-}
-
-.addMore {
-  background-color: #233c9b;
-  padding: 10px 25px;
-  border: solid 2px #233c9b;
-  outline: none;
-  border-radius: 30px;
-  font-weight: 600;
-  color: white;
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.addMore:hover {
-  cursor: pointer;
-}
-
-.removeBtn {
-  background-color: #df0505;
-  padding: 10px 25px;
-  border: solid 2px #df0505;
-  outline: none;
-  border-radius: 30px;
-  font-weight: 600;
-  color: white;
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.removeBtn:hover {
-  cursor: pointer;
-}
-
-.btn-box {
-  display: flex;
-  gap: 250px;
-  margin-bottom: 20px;
 }

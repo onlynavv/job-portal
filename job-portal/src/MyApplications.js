@@ -15,7 +15,7 @@ const MyApplications = () => {
     const [myApplications, setMyApplications] = useState([])
 
     const getMyApplications = () => {
-        fetch('http://localhost:9000/job/joblisting/getSingleUserApplications', {
+        fetch('https://job-portal-node-app.herokuapp.com/job/joblisting/getSingleUserApplications', {
             method:'GET',
             headers: { "Content-Type": "application/json", "x-auth-token":userState.user.token}})
     .then((data)=> data.json())
@@ -31,7 +31,7 @@ const MyApplications = () => {
     const removeApplication = async(applicationId, jobId) => {
         console.log(applicationId, jobId)
         try{
-            const resp = await fetch(`http://localhost:9000/job/joblisting/removeApplication/${applicationId}/${jobId}`, {
+            const resp = await fetch(`https://job-portal-node-app.herokuapp.com/job/joblisting/removeApplication/${applicationId}/${jobId}`, {
             method:'PUT',
             headers: { "Content-Type": "application/json", "x-auth-token":userState.user.token}
                 })
@@ -50,7 +50,7 @@ const MyApplications = () => {
               <h1>My Applications</h1>
                 <h3>Welcome {userState.user.username}</h3>
                 <div className='applications-wrapper'>
-            {myApplications ? (
+            {myApplications.length > 0 ? (
                         myApplications.map((item)=>{
                         const {applicationId, applicationStatus, jobId, jobTitle, recruiterLocation, recruiterName, resume, salary, skillsets, submittedAt, workexperience} = item
                         const submittedDate = new Date(submittedAt)
@@ -77,7 +77,7 @@ const MyApplications = () => {
                                         </ul>
                                     </div>
                                     <div className='cancelBtn-div'>
-                                        <button className='rejectBtn' onClick={()=>removeApplication(applicationId, jobId)}>Remove</button>
+                                        <button className='rejectBtn' onClick={()=>removeApplication(applicationId, jobId)}>Reject</button>
                                     </div>
                                 </div>
                             </div>
