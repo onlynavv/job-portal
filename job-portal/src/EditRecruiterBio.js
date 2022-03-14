@@ -8,6 +8,8 @@ import "./EditRecruiterBio.css"
 const EditRecruiterBio = () => {
     const {userState, isUserLoggedIn, userDispatch} = useGlobalContext()
 
+    console.log(userState)
+
     useEffect(()=>{
       if(!userState.isUserAuthenticated){
         isUserLoggedIn()

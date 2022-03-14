@@ -58,24 +58,29 @@ const CampaignCard = ({_id, deadline, jobStatus, jobtitle, jobtype, applicants, 
                 </ul>
             </div>
             <div className='change-jobStatus'>
-                <InputLabel id="demo-simple-select-standard-label" className="userInput">Change the Job Status</InputLabel>
-                <Select
-                        labelId="demo-simple-select-standard-label"
-                        id="jobStatus"
-                        name="jobStatus"
-                        label="jobStatus"
-                        value={jobStatusValue}
-                        onChange={handleJobStatusChange}>
-                                
-                        <MenuItem value="none">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value="completed">
-                            Completed
-                        </MenuItem>   
-                </Select>
+                {jobStatus === "open" && (
+                    <>
+                    <InputLabel id="demo-simple-select-standard-label" className="userInput">Change the Job Status</InputLabel>
+                    <Select
+                            labelId="demo-simple-select-standard-label"
+                            id="jobStatus"
+                            name="jobStatus"
+                            label="jobStatus"
+                            value={jobStatusValue}
+                            onChange={handleJobStatusChange}>
+                                    
+                            <MenuItem value="none">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value="completed">
+                                Completed
+                            </MenuItem>   
+                    </Select>
+                    </>
+                )}
             </div>
-            <button className='viewApplicants-btn' onClick={()=>history.push(`/ongoingCampaign/${_id}`)}>View Applicants</button>
+            {applicants.length > 0 && <button className='viewApplicants-btn' onClick={()=>history.push(`/ongoingCampaign/${_id}`)}>View Applicants</button>}
+            
         </div>
     </div>
   )

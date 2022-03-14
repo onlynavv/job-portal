@@ -6,23 +6,15 @@ const AppContext = React.createContext()
 
 const AppProvider = ({children}) => {
 
-    const [jobfeed, setJobfeed] = useState([])
-
     // user functions
     const isUserLoggedIn = () => {
         const token = JSON.parse(localStorage.getItem("token"))
+        console.log(token)
         if(token){
             const userFromDB = JSON.parse(localStorage.getItem("user"))
-            userDispatch({type:"SET_USER", payload:{token, userFromDB}})
+            console.log(userFromDB)
+            userDispatch({type:"SET_USER", payload:{userFromDB}})
         }
-    }
-
-    const getJobListing = () => {
-        fetch('https://job-portal-node-app.herokuapp.com/job/joblisting/getUserJobListing', {
-            method:'GET',
-            headers: { "Content-Type": "application/json"}})
-    .then((data)=> data.json())
-    .then((item)=> setJobfeed(item))
     }
 
     // user useReducer
@@ -31,7 +23,7 @@ const AppProvider = ({children}) => {
     console.log(userState)
 
     return(
-        <AppContext.Provider value={{userState, userDispatch, isUserLoggedIn, getJobListing, jobfeed}}>
+        <AppContext.Provider value={{userState, userDispatch, isUserLoggedIn}}>
             {children}
         </AppContext.Provider>
     )

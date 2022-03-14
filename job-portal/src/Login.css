@@ -1,0 +1,44 @@
+.userLogin-section {
+  top: 140px;
+  position: relative;
+}
+
+.userLogin-wrapper {
+  display: flex;
+  padding: 30px;
+  background-color: #fff;
+  height: max-content;
+  justify-content: center;
+  flex: 1;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.form-card {
+  width: 650px;
+}
+
+form,
+.form-cardContent {
+  padding: 20px 30px;
+}
+
+.demo-credentials-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.passwordLogin,
+.userLogin {
+  border: none;
+  border-bottom: solid 1px black;
+  outline: none;
+  height: 30px;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

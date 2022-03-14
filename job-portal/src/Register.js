@@ -7,6 +7,9 @@ import MenuItem from '@mui/material/MenuItem';
 import { useFormik } from 'formik'
 import * as yup from 'yup';
 import { useHistory } from 'react-router-dom'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import "./Register.css"
 
 const validateFormSchema = yup.object({
     username: yup.string().required('Please fill the Username'),
@@ -49,7 +52,10 @@ const Register = ({showRegisterForm,setShowRegisterForm}) => {
   }
 
   return (
-            <div>
+    <section className='userRegister-section'>
+        <div className='container userRegister-wrapper'>
+            <Card className="form-card">
+                <CardContent className="form-cardContent">
                 <h1>Register</h1>
                 
                         <form className='form-wrapper' onSubmit={handleSubmit}>
@@ -95,7 +101,10 @@ const Register = ({showRegisterForm,setShowRegisterForm}) => {
                     <span className='signup-gray'>Already have an account?</span>
                     <span className='signup-link' onClick={()=>setShowRegisterForm(!showRegisterForm)}>Sign In</span>
                 </h4>
-            </div>
+                </CardContent>
+            </Card>
+        </div>
+    </section>
 )
 };
 

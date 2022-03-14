@@ -12,11 +12,11 @@ function App() {
   const {user} = userState
   console.log(user)
 
-  // useEffect(()=>{
-  //     if(!userState.isUserAuthenticated){
-  //       isUserLoggedIn()
-  //     }
-  // },[])
+  useEffect(()=>{
+      if(!userState.isUserAuthenticated){
+        isUserLoggedIn()
+      }
+  },[])
 
   return (
     <div className="App">

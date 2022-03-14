@@ -5,10 +5,13 @@ import "./OngoingCampaign.css"
 
 const OngoingCampaign = () => {
 
-    const {userState, isUserLoggedIn, userDispatch} = useGlobalContext()
+    const {userState, isUserLoggedIn} = useGlobalContext()
+
+    console.log(userState)
 
     useEffect(()=>{
       if(!userState.isUserAuthenticated){
+        console.log("function called")
         isUserLoggedIn()
       }
   },[])
@@ -37,8 +40,7 @@ const OngoingCampaign = () => {
   return (
     <section className='ongoingCampaign-section'>
         <div className='container'>
-            <h1>OngoingCampaigns</h1>
-            <h3>Applied Candidates</h3>
+            <h1>Ongoing Campaigns</h1>
             {ongoingCampaign.length> 0 && ongoingCampaign.map((item)=>{
                 return(
                     <CampaignCard key={item._id} {...item} getOngoingCampaignList={getOngoingCampaignList} />

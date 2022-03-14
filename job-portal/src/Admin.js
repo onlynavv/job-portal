@@ -5,8 +5,8 @@ import AppliedApplicantsList from './AppliedApplicantsList';
 import CompletedCampaign from './CompletedCampaign';
 import EditRecruiterBio from './EditRecruiterBio';
 import OngoingCampaign from './OngoingCampaign';
-import RecruiterDashboard from './RecruiterDashboard';
 import RecruiterNavbar from './RecruiterNavbar';
+import ViewApplicants from './ViewApplicants';
 
 const Admin = () => {
   return (
@@ -15,13 +15,10 @@ const Admin = () => {
           <RecruiterNavbar />
           <Switch>
               <Route exact path="/">
-                <RecruiterDashboard />
+                  <EditRecruiterBio />
               </Route>
               <Route path="/addJobListing">
                   <AddJobListing />
-              </Route>
-              <Route path="/editRecruiterBio">
-                  <EditRecruiterBio />
               </Route>
               <Route path="/ongoingCampaign/:id">
                   <AppliedApplicantsList />
@@ -31,6 +28,9 @@ const Admin = () => {
               </Route>
               <Route path="/completedCampaign">
                   <CompletedCampaign />
+              </Route>
+              <Route path="/applicants/:id">
+                  <ViewApplicants />
               </Route>
           </Switch>
       </Router>
